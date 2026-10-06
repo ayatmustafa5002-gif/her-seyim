@@ -1,1373 +1,1378 @@
+```html
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta charset="UTF-8">
+<title>Her şeyim ❤️</title>
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+<style>
 
-    <title>Her şeyim ❤️</title>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
 
-    <style>
+html,
+body{
+    width:100%;
+    height:100%;
+}
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+body{
+    overflow:hidden;
+    font-family:Arial,Tahoma,sans-serif;
+    color:white;
 
-        html,
-        body {
-            width: 100%;
-            height: 100%;
-        }
+    background:
+        radial-gradient(
+            circle at center,
+            #351322 0%,
+            #160811 45%,
+            #050205 100%
+        );
+}
 
-        body {
 
-            overflow: hidden;
+/* =========================
+   المشاهد
+========================= */
 
-            font-family:
-                Arial,
-                Tahoma,
-                sans-serif;
+.scene{
+    position:fixed;
+    inset:0;
 
-            color: white;
+    width:100%;
+    height:100%;
 
-            background:
-                radial-gradient(
-                    circle at center,
-                    #351322 0%,
-                    #160811 45%,
-                    #050205 100%
-                );
-        }
+    display:none;
 
+    align-items:center;
+    justify-content:center;
 
-        /* =========================
-           المشاهد
-        ========================= */
+    padding:25px;
 
-        .scene {
+    text-align:center;
 
-            position: fixed;
+    opacity:0;
 
-            inset: 0;
+    z-index:10;
+}
 
-            width: 100%;
-            height: 100%;
+.scene.active{
+    display:flex;
 
-            display: none;
+    opacity:1;
 
-            align-items: center;
-            justify-content: center;
+    animation:
+        sceneIn
+        .7s
+        ease
+        forwards;
+}
 
-            padding: 25px;
+@keyframes sceneIn{
 
-            text-align: center;
+    from{
+        opacity:0;
 
-            opacity: 0;
-        }
+        transform:
+            scale(.96)
+            translateY(20px);
+    }
 
+    to{
+        opacity:1;
 
-        .scene.active {
+        transform:
+            scale(1)
+            translateY(0);
+    }
+}
 
-            display: flex;
 
-            animation:
-                sceneIn
-                .7s
-                ease
-                forwards;
-        }
+/* =========================
+   المحتوى
+========================= */
 
+.content{
+    width:min(700px,92vw);
 
-        @keyframes sceneIn {
+    position:relative;
 
-            from {
+    z-index:100;
+}
 
-                opacity: 0;
 
-                transform:
-                    scale(.96)
-                    translateY(20px);
-            }
+/* =========================
+   القلب الصغير
+========================= */
 
-            to {
+.small-heart{
 
-                opacity: 1;
+    font-size:75px;
 
-                transform:
-                    scale(1)
-                    translateY(0);
-            }
-        }
+    color:#ff3f78;
 
+    margin-bottom:15px;
 
-        /* =========================
-           المحتوى
-        ========================= */
+    animation:
+        beat
+        1.4s
+        infinite;
 
-        .content {
+    text-shadow:
+        0 0 15px #ff3f78,
+        0 0 40px #ff3f78;
+}
 
-            width:
-                min(700px, 92vw);
 
-            position: relative;
+/* =========================
+   العناوين
+========================= */
 
-            z-index: 10;
-        }
+h1{
 
+    font-size:
+        clamp(45px,10vw,90px);
 
-        .small-heart {
+    margin-bottom:20px;
 
-            font-size: 75px;
+    text-shadow:
+        0 0 15px #ff3f78,
+        0 0 40px
+        rgba(255,63,120,.5);
+}
 
-            color: #ff3f78;
+h1 span{
+    color:#ff3f78;
+}
 
-            margin-bottom: 15px;
+h2{
 
-            animation:
-                beat
-                1.4s
-                infinite;
+    font-size:
+        clamp(27px,6vw,48px);
 
-            text-shadow:
-                0 0 15px #ff3f78,
-                0 0 40px #ff3f78;
-        }
+    line-height:1.5;
 
+    margin-bottom:20px;
+}
 
-        h1 {
+p{
 
-            font-size:
-                clamp(45px, 10vw, 90px);
+    color:#ead0d9;
 
-            margin-bottom: 20px;
+    font-size:19px;
 
-            text-shadow:
-                0 0 15px #ff3f78,
-                0 0 40px
-                rgba(255,63,120,.5);
-        }
+    line-height:2;
+}
 
 
-        h1 span {
+/* =========================
+   الأزرار
+========================= */
 
-            color: #ff3f78;
-        }
+.main-button,
+.second-button{
 
+    position:relative;
 
-        h2 {
+    z-index:200;
 
-            font-size:
-                clamp(27px, 6vw, 48px);
+    border:none;
 
-            line-height: 1.5;
+    border-radius:50px;
 
-            margin-bottom: 20px;
-        }
+    padding:
+        15px 30px;
 
+    margin-top:30px;
 
-        p {
+    font-size:18px;
 
-            color: #ead0d9;
+    font-family:inherit;
 
-            font-size: 19px;
+    cursor:pointer;
 
-            line-height: 2;
-        }
+    pointer-events:auto;
 
+    touch-action:manipulation;
 
-        /* =========================
-           الأزرار
-        ========================= */
+    transition:
+        .3s ease;
+}
 
-        .main-button,
-        .second-button {
 
-            border: none;
+.main-button{
 
-            border-radius: 50px;
+    color:white;
 
-            padding:
-                15px 30px;
+    background:
+        linear-gradient(
+            135deg,
+            #ff5687,
+            #ff174f
+        );
 
-            margin-top: 30px;
+    box-shadow:
+        0 10px 30px
+        rgba(255,23,79,.35);
+}
 
-            font-size: 18px;
 
-            font-family: inherit;
+.main-button:hover{
 
-            cursor: pointer;
+    transform:
+        translateY(-4px)
+        scale(1.04);
 
-            transition:
-                .3s ease;
-        }
+    box-shadow:
+        0 15px 40px
+        rgba(255,23,79,.6);
+}
 
 
-        .main-button {
+.second-button{
 
-            color: white;
+    color:white;
 
-            background:
-                linear-gradient(
-                    135deg,
-                    #ff5687,
-                    #ff174f
-                );
+    background:
+        rgba(255,255,255,.08);
 
-            box-shadow:
-                0 10px 30px
-                rgba(255,23,79,.35);
-        }
+    border:
+        1px solid
+        rgba(255,255,255,.2);
+}
 
 
-        .main-button:hover {
+.second-button:hover{
 
-            transform:
-                translateY(-4px)
-                scale(1.04);
+    background:
+        rgba(255,255,255,.16);
+}
 
-            box-shadow:
-                0 15px 40px
-                rgba(255,23,79,.6);
-        }
 
+.buttons{
 
-        .second-button {
+    display:flex;
 
-            color: white;
+    justify-content:center;
 
-            background:
-                rgba(255,255,255,.08);
+    align-items:center;
 
-            border:
-                1px solid
-                rgba(255,255,255,.2);
-        }
+    gap:15px;
 
+    flex-wrap:wrap;
+}
 
-        .second-button:hover {
-            background:
-                rgba(255,255,255,.16);
-        }
 
+/* =========================
+   المشهد الثاني
+========================= */
 
-        .buttons {
+.number{
 
-            display: flex;
+    color:#ff5687;
 
-            justify-content: center;
+    font-size:14px;
 
-            align-items: center;
+    letter-spacing:6px;
 
-            gap: 15px;
+    margin-bottom:15px;
+}
 
-            flex-wrap: wrap;
-        }
+#noMessage{
 
+    min-height:40px;
 
-        /* =========================
-           المشهد الثاني
-        ========================= */
+    color:#ff9ab7;
+}
 
-        .number {
 
-            color: #ff5687;
+/* =========================
+   المشهد الثالث
+========================= */
 
-            font-size: 14px;
+#wordCloud{
 
-            letter-spacing: 6px;
+    position:fixed;
 
-            margin-bottom: 15px;
-        }
+    inset:0;
 
+    overflow:hidden;
 
-        #noMessage {
+    pointer-events:none;
 
-            min-height: 40px;
+    z-index:1;
+}
 
-            color: #ff9ab7;
-        }
 
+.word{
 
-        /* =========================
-           المشهد الثالث
-        ========================= */
+    position:absolute;
 
-        #wordCloud {
+    color:
+        rgba(255,120,160,.65);
 
-            position: fixed;
+    white-space:nowrap;
 
-            inset: 0;
+    pointer-events:none;
 
-            overflow: hidden;
+    animation:
+        wordFloat
+        6s
+        ease-in-out
+        infinite;
+}
 
-            pointer-events: none;
-        }
 
+.center-box{
 
-        .word {
+    padding:40px 25px;
 
-            position: absolute;
+    border-radius:30px;
 
-            color:
-                rgba(255,120,160,.65);
+    background:
+        rgba(8,2,6,.5);
 
-            white-space: nowrap;
+    backdrop-filter:
+        blur(8px);
 
-            animation:
-                wordFloat
-                6s
-                ease-in-out
-                infinite;
-        }
+    border:
+        1px solid
+        rgba(255,80,130,.12);
 
+    z-index:100;
+}
 
-        .center-box {
 
-            padding: 40px 25px;
+.glowing-heart{
 
-            border-radius: 30px;
+    font-size:70px;
 
-            background:
-                rgba(8,2,6,.5);
+    color:#ff3f78;
 
-            backdrop-filter:
-                blur(8px);
+    animation:
+        beat
+        1.4s
+        infinite;
 
-            border:
-                1px solid
-                rgba(255,80,130,.12);
-        }
+    text-shadow:
+        0 0 20px #ff3f78,
+        0 0 50px #ff3f78;
+}
 
 
-        .glowing-heart {
+/* =========================
+   المشهد الرابع
+========================= */
 
-            font-size: 70px;
+.big-question{
 
-            color: #ff3f78;
+    font-size:
+        clamp(25px,6vw,42px);
 
-            animation:
-                beat
-                1.4s
-                infinite;
+    color:white;
 
-            text-shadow:
-                0 0 20px #ff3f78,
-                0 0 50px #ff3f78;
-        }
+    margin:20px 0;
+}
 
 
-        /* =========================
-           المشهد الرابع
-        ========================= */
+/* =========================
+   الرسالة
+========================= */
 
-        .big-question {
+.envelope{
 
-            font-size:
-                clamp(25px, 6vw, 42px);
+    font-size:60px;
 
-            color: white;
+    margin-bottom:15px;
+}
 
-            margin: 20px 0;
-        }
 
+.letter{
 
-        /* =========================
-           الرسالة
-        ========================= */
+    max-width:600px;
 
-        .envelope {
+    min-height:220px;
 
-            font-size: 60px;
+    margin:
+        20px auto;
 
-            margin-bottom: 15px;
-        }
+    padding:25px;
 
+    border-radius:20px;
 
-        .letter {
+    background:
+        rgba(255,255,255,.05);
 
-            max-width: 600px;
+    border:
+        1px solid
+        rgba(255,80,130,.2);
+}
 
-            min-height: 220px;
 
-            margin:
-                20px auto;
+#typedMessage{
 
-            padding: 25px;
+    white-space:
+        pre-line;
 
-            border-radius: 20px;
+    color:#f7dfe7;
 
-            background:
-                rgba(255,255,255,.05);
+    font-size:18px;
 
-            border:
-                1px solid
-                rgba(255,80,130,.2);
-        }
+    line-height:2;
+}
 
 
-        #typedMessage {
+.cursor{
 
-            white-space:
-                pre-line;
+    color:#ff477d;
 
-            color: #f7dfe7;
+    animation:
+        blink
+        .7s
+        infinite;
+}
 
-            font-size: 18px;
 
-            line-height: 2;
-        }
+/* =========================
+   النهاية
+========================= */
 
+.big-heart{
 
-        .cursor {
+    position:relative;
 
-            color: #ff477d;
+    z-index:200;
 
-            animation:
-                blink
-                .7s
-                infinite;
-        }
+    border:none;
 
+    background:transparent;
 
-        /* =========================
-           النهاية
-        ========================= */
+    font-size:120px;
 
-        .big-heart {
+    cursor:pointer;
 
-            border: none;
+    pointer-events:auto;
 
-            background: transparent;
+    touch-action:manipulation;
 
-            font-size: 120px;
+    margin:25px;
 
-            cursor: pointer;
+    animation:
+        beat
+        1.2s
+        infinite;
 
-            margin: 25px;
+    filter:
+        drop-shadow(
+            0 0 15px #ff477d
+        )
+        drop-shadow(
+            0 0 45px #ff477d
+        );
 
-            animation:
-                beat
-                1.2s
-                infinite;
+    transition:.3s;
+}
 
-            filter:
-                drop-shadow(
-                    0 0 15px #ff477d
-                )
-                drop-shadow(
-                    0 0 45px #ff477d
-                );
 
-            transition: .3s;
-        }
+.big-heart:hover{
 
+    transform:
+        scale(1.15);
+}
 
-        .big-heart:hover {
 
-            transform:
-                scale(1.15);
-        }
+.click-text{
 
+    opacity:.6;
 
-        .click-text {
+    font-size:14px;
+}
 
-            opacity: .6;
 
-            font-size: 14px;
-        }
+#finalMessage{
 
+    display:none;
 
-        #finalMessage {
+    animation:
+        finalIn
+        1.2s
+        ease
+        forwards;
+}
 
-            display: none;
 
-            animation:
-                finalIn
-                1.2s
-                ease
-                forwards;
-        }
+#finalMessage h1{
 
+    font-size:
+        clamp(45px,10vw,85px);
+}
 
-        #finalMessage h1 {
 
-            font-size:
-                clamp(45px, 10vw, 85px);
-        }
+.infinity{
 
+    color:#ff477d;
 
-        .infinity {
+    font-size:70px;
 
-            color: #ff477d;
+    margin-top:15px;
+}
 
-            font-size: 70px;
 
-            margin-top: 15px;
-        }
-        /* =========================
-           النقاط
-        ========================= */
+/* =========================
+   النقاط
+========================= */
 
-        .progress {
+.progress{
 
-            position: fixed;
+    position:fixed;
 
-            bottom: 25px;
+    bottom:25px;
 
-            left: 50%;
+    left:50%;
 
-            transform:
-                translateX(-50%);
+    transform:
+        translateX(-50%);
 
-            display: flex;
+    display:flex;
 
-            gap: 8px;
+    gap:8px;
 
-            z-index: 1000;
-        }
+    z-index:1000;
 
+    pointer-events:none;
+}
 
-        .dot {
 
-            width: 8px;
-            height: 8px;
+.dot{
 
-            border-radius: 50%;
+    width:8px;
+    height:8px;
 
-            background:
-                rgba(255,255,255,.25);
+    border-radius:50%;
 
-            transition: .3s;
-        }
+    background:
+        rgba(255,255,255,.25);
 
+    transition:.3s;
+}
 
-        .dot.active {
 
-            width: 25px;
+.dot.active{
 
-            border-radius: 10px;
+    width:25px;
 
-            background: #ff477d;
-        }
+    border-radius:10px;
 
+    background:#ff477d;
+}
 
-        /* =========================
-           خلفية
-        ========================= */
 
-        .bg-heart {
+/* =========================
+   قلوب الخلفية
+========================= */
 
-            position: fixed;
+.bg-heart{
 
-            bottom: -50px;
+    position:fixed;
 
-            color:
-                rgba(255,70,120,.12);
+    bottom:-50px;
 
-            font-size: 25px;
+    color:
+        rgba(255,70,120,.12);
 
-            pointer-events: none;
+    font-size:25px;
 
-            animation:
-                rise
-                linear
-                infinite;
-        }
+    pointer-events:none;
 
+    z-index:0;
 
-        /* =========================
-           animations
-        ========================= */
+    animation:
+        rise
+        linear
+        infinite;
+}
 
-        @keyframes beat {
 
-            0%,100% {
+/* =========================
+   زر الاختبار
+========================= */
 
-                transform:
-                    scale(1);
-            }
+#testButton{
 
-            50% {
+    position:fixed;
 
-                transform:
-                    scale(1.12);
-            }
-        }
+    top:10px;
 
+    left:10px;
 
-        @keyframes blink {
+    z-index:99999;
 
-            50% {
-                opacity: 0;
-            }
-        }
+    border:1px solid
+        rgba(255,255,255,.2);
 
+    border-radius:20px;
 
-        @keyframes wordFloat {
+    padding:6px 10px;
 
-            0%,100% {
+    color:#fff;
 
-                transform:
-                    translateY(0);
+    background:
+        rgba(0,0,0,.45);
 
-                opacity: .3;
-            }
+    font-size:11px;
 
-            50% {
+    cursor:pointer;
 
-                transform:
-                    translateY(-25px);
+    opacity:.5;
+}
 
-                opacity: .9;
-            }
-        }
+#testButton:hover{
+    opacity:1;
+}
 
 
-        @keyframes rise {
+/* =========================
+   الحركات
+========================= */
 
-            from {
+@keyframes beat{
 
-                transform:
-                    translateY(0)
-                    rotate(0deg);
+    0%,100%{
+        transform:scale(1);
+    }
 
-                opacity: 0;
-            }
+    50%{
+        transform:scale(1.12);
+    }
+}
 
-            20% {
 
-                opacity: 1;
-            }
+@keyframes blink{
 
-            to {
+    50%{
+        opacity:0;
+    }
+}
 
-                transform:
-                    translateY(-120vh)
-                    rotate(30deg);
 
-                opacity: 0;
-            }
-        }
+@keyframes wordFloat{
 
+    0%,100%{
 
-        @keyframes finalIn {
+        transform:
+            translateY(0);
 
-            from {
+        opacity:.3;
+    }
 
-                opacity: 0;
+    50%{
 
-                transform:
-                    scale(.5);
-            }
+        transform:
+            translateY(-25px);
 
-            to {
+        opacity:.9;
+    }
+}
 
-                opacity: 1;
 
-                transform:
-                    scale(1);
-            }
-        }
+@keyframes rise{
 
+    from{
 
-        /* =========================
-           الهاتف
-        ========================= */
+        transform:
+            translateY(0)
+            rotate(0deg);
 
-        @media (max-width:600px) {
+        opacity:0;
+    }
 
-            .content {
+    20%{
+        opacity:1;
+    }
 
-                width: 94vw;
-            }
+    to{
 
+        transform:
+            translateY(-120vh)
+            rotate(30deg);
 
-            h2 {
+        opacity:0;
+    }
+}
 
-                font-size: 27px;
-            }
 
+@keyframes finalIn{
 
-            p {
+    from{
 
-                font-size: 16px;
-            }
+        opacity:0;
 
+        transform:
+            scale(.5);
+    }
 
-            .main-button,
-            .second-button {
+    to{
 
-                font-size: 16px;
+        opacity:1;
 
-                padding:
-                    13px 23px;
-            }
+        transform:
+            scale(1);
+    }
+}
 
 
-            .letter {
+/* =========================
+   الهاتف
+========================= */
 
-                max-height: 310px;
+@media(max-width:600px){
 
-                overflow-y: auto;
-            }
+    .content{
+        width:94vw;
+    }
 
+    h2{
+        font-size:27px;
+    }
 
-            #typedMessage {
+    p{
+        font-size:16px;
+    }
 
-                font-size: 17px;
-            }
+    .main-button,
+    .second-button{
 
+        font-size:16px;
 
-            .big-heart {
+        padding:
+            13px 23px;
+    }
 
-                font-size: 100px;
-            }
-        }
+    .letter{
 
-    </style>
+        max-height:310px;
 
+        overflow-y:auto;
+    }
+
+    #typedMessage{
+        font-size:17px;
+    }
+
+    .big-heart{
+        font-size:100px;
+    }
+}
+
+</style>
 </head>
 
 
 <body>
 
 
-    <!-- ==================================
-         المشهد الأول
-    ================================== -->
+<!-- =========================
+     المشهد الأول
+========================= -->
 
-    <section
-        class="scene active"
-        id="scene1">
+<section
+    class="scene active"
+    id="scene1">
 
-        <div class="content">
+    <div class="content">
 
-            <div class="small-heart">
-                ♡
-            </div>
-
-            <h1>
-                Her şeyim
-                <span>❤️</span>
-            </h1>
-
-            <p>
-                في حاجة صغيرة عايزة أقولها ليك...
-            </p>
-
-            <button
-                class="main-button"
-                id="startButton">
-
-                اضغطي هنا ♡
-
-            </button>
-
+        <div class="small-heart">
+            ♡
         </div>
 
-    </section>
-
-
-    <!-- ==================================
-         المشهد الثاني
-    ================================== -->
-    <section
-        class="scene"
-        id="scene2">
-
-        <div class="content">
-
-            <div class="number">
-                02
-            </div>
-
-            <h2>
-                عارفة إنتِ بالنسبة لي شنو؟ 👀
-            </h2>
-
-            <p id="noMessage">
-                فكري كويس قبل ما تجاوبي...
-            </p>
-
-            <div class="buttons">
-
-                <button
-                    class="main-button"
-                    id="yesButton">
-
-                    أكيد ❤️
-
-                </button>
-
-
-                <button
-                    class="second-button"
-                    id="noButton">
-
-                    ما عارفة
-
-                </button>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- ==================================
-         المشهد الثالث
-    ================================== -->
-
-    <section
-        class="scene"
-        id="scene3">
-
-        <div id="wordCloud"></div>
-
-        <div class="content center-box">
-
-            <div class="glowing-heart">
-                ♥
-            </div>
-
-            <h2>
-                Her şeyim.
-            </h2>
-
-            <p>
-                كل شيء جميل في أيامي ❤️
-            </p>
-
-            <button
-                class="main-button next-button">
-
-                كملي... ✨
-
-            </button>
-
-        </div>
-
-    </section>
-
-
-    <!-- ==================================
-         المشهد الرابع
-    ================================== -->
-
-    <section
-        class="scene"
-        id="scene4">
-
-        <div class="content">
-
-            <div class="number">
-                04
-            </div>
-
-            <h2>
-                لو رجع بي الزمن...
-            </h2>
-
-            <p class="big-question">
-                حتفتكريني أختارك تاني؟
-            </p>
-
-            <div class="buttons">
-
-                <button
-                    class="main-button next-button">
-
-                    أختارك كل مرة ❤️
-
-                </button>
-
-
-                <button
-                    class="second-button next-button">
-
-                    أكيد ❤️
-
-                </button>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- ==================================
-         المشهد الخامس
-    ================================== -->
-
-    <section
-        class="scene"
-        id="scene5">
-
-        <div class="content">
-
-            <div class="envelope">
-                💌
-            </div>
-
-            <h2>
-                إلى أعز إنسانة عندي...
-            </h2>
-
-            <div class="letter">
-
-                <span id="typedMessage"></span>
-
-                <span class="cursor">
-                    |
-                </span>
-
-            </div>
-
-
-            <button
-                class="main-button next-button">
-
-                كملي الرسالة 💌
-
-            </button>
-
-        </div>
-
-    </section>
-
-
-    <!-- ==================================
-         المشهد السادس
-    ================================== -->
-
-    <section
-        class="scene"
-        id="scene6">
-
-        <div class="content">
-
-            <p>
-                عندي مفاجأة صغيرة ليك...
-            </p>
-
-
-            <button
-                class="big-heart"
-                id="bigHeart">
-
-                ❤️
-
-            </button>
-
-
-            <p class="click-text">
-                اضغطي على القلب
-            </p>
-
-
-            <div id="finalMessage">
-
-                <h1>
-                    Her şeyim ❤️
-                </h1>
-
-                <p>
-                    أحبك أكثر مما تستطيع الكلمات أن تقول.
-                </p>
-
-                <div class="infinity">
-                    ∞
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- ==================================
-         نقاط المشاهد
-    ================================== -->
-
-    <div class="progress">
-
-        <span class="dot active"></span>
-
-        <span class="dot"></span>
-
-        <span class="dot"></span>
-
-        <span class="dot"></span>
-
-        <span class="dot"></span>
-
-        <span class="dot"></span>
+        <h1>
+            Her şeyim
+            <span>❤️</span>
+        </h1>
+
+        <p>
+            في حاجة صغيرة عايزة أقولها ليك...
+        </p>
+
+        <button
+            type="button"
+            class="main-button"
+            id="startButton"
+            onclick="goToScene(1)">
+
+            اضغطي هنا ♡
+
+        </button>
 
     </div>
 
+</section>
 
-    <script>
-        /* ==========================================
-           النظام الأساسي
-        ========================================== */
 
-        const scenes =
-            document.querySelectorAll(".scene");
+<!-- =========================
+     المشهد الثاني
+========================= -->
 
-        const dots =
-            document.querySelectorAll(".dot");
+<section
+    class="scene"
+    id="scene2">
 
-        let currentScene = 0;
+    <div class="content">
 
+        <div class="number">
+            02
+        </div>
 
-        function showScene(number) {
+        <h2>
+            عارفة إنتِ بالنسبة لي شنو؟ 👀
+        </h2>
 
-            if (
-                number < 0 ||
-                number >= scenes.length
-            ) {
-                return;
-            }
+        <p id="noMessage">
+            فكري كويس قبل ما تجاوبي...
+        </p>
 
+        <div class="buttons">
 
-            scenes.forEach(
-                function(scene, index) {
+            <button
+                type="button"
+                class="main-button"
+                onclick="goToScene(2)">
 
-                    scene.classList.toggle(
-                        "active",
-                        index === number
-                    );
+                أكيد ❤️
 
-                }
-            );
+            </button>
 
+            <button
+                type="button"
+                class="second-button"
+                id="noButton"
+                onclick="goToScene(2)"
+                onmouseenter="moveNoButton()">
 
-            dots.forEach(
-                function(dot, index) {
+                ما عارفة
 
-                    dot.classList.toggle(
-                        "active",
-                        index === number
-                    );
+            </button>
 
-                }
-            );
+        </div>
 
+    </div>
 
-            currentScene = number;
+</section>
 
 
-            if (number === 2) {
+<!-- =========================
+     المشهد الثالث
+========================= -->
 
-                createWords();
+<section
+    class="scene"
+    id="scene3">
 
-            }
+    <div id="wordCloud"></div>
 
+    <div class="content center-box">
 
-            if (number === 4) {
+        <div class="glowing-heart">
+            ♥
+        </div>
 
-                startTyping();
+        <h2>
+            Her şeyim.
+        </h2>
 
-            }
+        <p>
+            كل شيء جميل في أيامي ❤️
+        </p>
 
-        }
+        <button
+            type="button"
+            class="main-button"
+            onclick="goToScene(3)">
 
+            كملي... ✨
 
-        function nextScene() {
+        </button>
 
-            if (
-                currentScene <
-                scenes.length - 1
-            ) {
+    </div>
 
-                showScene(
-                    currentScene + 1
-                );
+</section>
 
-            }
 
-        }
+<!-- =========================
+     المشهد الرابع
+========================= -->
 
+<section
+    class="scene"
+    id="scene4">
 
-        /* ==========================================
-           المشهد الأول
-        ========================================== */
+    <div class="content">
 
-        document
-            .getElementById("startButton")
-            .addEventListener(
-                "click",
-                function() {
+        <div class="number">
+            04
+        </div>
 
-                    showScene(1);
+        <h2>
+            لو رجع بي الزمن...
+        </h2>
 
-                }
-            );
+        <p class="big-question">
+            حتفتكريني أختارك تاني؟
+        </p>
 
+        <div class="buttons">
 
-        /* ==========================================
-           المشهد الثاني
-        ========================================== */
+            <button
+                type="button"
+                class="main-button"
+                onclick="goToScene(4)">
 
-        document
-            .getElementById("yesButton")
-            .addEventListener(
-                "click",
-                function() {
+                أختارك كل مرة ❤️
 
-                    showScene(2);
+            </button>
 
-                }
-            );
+            <button
+                type="button"
+                class="second-button"
+                onclick="goToScene(4)">
 
+                أكيد ❤️
 
-        const noButton =
-            document.getElementById("noButton");
+            </button>
 
-        const noMessage =
-            document.getElementById("noMessage");
+        </div>
 
-        let noCount = 0;
+    </div>
 
+</section>
 
-        noButton.addEventListener(
-            "mouseenter",
-            function() {
 
-                noCount++;
+<!-- =========================
+     المشهد الخامس
+========================= -->
 
+<section
+    class="scene"
+    id="scene5">
 
-                if (noCount <= 5) {
+    <div class="content">
 
-                    const x =
-                        Math.random() * 200 - 100;
+        <div class="envelope">
+            💌
+        </div>
 
-                    const y =
-                        Math.random() * 120 - 60;
+        <h2>
+            إلى أعز إنسانة عندي...
+        </h2>
 
+        <div class="letter">
 
-                    noButton.style.transform =
-                        "translate(" +
-                        x +
-                        "px," +
-                        y +
-                        "px)";
+            <span id="typedMessage"></span>
 
+            <span class="cursor">
+                |
+            </span>
 
-                    const messages = [
+        </div>
 
-                        "لااا 😂",
+        <button
+            type="button"
+            class="main-button"
+            onclick="goToScene(5)">
 
-                        "جربي تاني ❤️",
+            كملي الرسالة 💌
 
-                        "ما بتمشي كدا 😭",
+        </button>
 
-                        "إنتِ عارفة طبعاً...",
+    </div>
 
-                        "خلاص ما عندك مهرب 😂❤️"
+</section>
 
-                    ];
 
+<!-- =========================
+     المشهد السادس
+========================= -->
 
-                    noMessage.textContent =
-                        messages[
-                            noCount - 1
-                        ];
+<section
+    class="scene"
+    id="scene6">
 
-                }
+    <div class="content">
 
-                else {
+        <p>
+            عندي مفاجأة صغيرة ليك...
+        </p>
 
-                    noButton.style.transform =
-                        "translate(0,0)";
+        <button
+            type="button"
+            class="big-heart"
+            id="bigHeart"
+            onclick="finishLove()">
 
-                    noButton.textContent =
-                        "خلاص عارفة ❤️";
+            ❤️
 
-                    noMessage.textContent =
-                        "أهو عرفتي 😌❤️";
+        </button>
 
-                }
+        <p
+            class="click-text"
+            id="clickText">
 
-            }
+            اضغطي على القلب
+
+        </p>
+
+        <div id="finalMessage">
+
+            <h1>
+                Her şeyim ❤️
+            </h1>
+
+            <p>
+                أحبك أكثر مما تستطيع الكلمات أن تقول.
+            </p>
+
+            <div class="infinity">
+                ∞
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     النقاط
+========================= -->
+
+<div class="progress">
+
+    <span class="dot active"></span>
+    <span class="dot"></span>
+    <span class="dot"></span>
+    <span class="dot"></span>
+    <span class="dot"></span>
+    <span class="dot"></span>
+
+</div>
+
+
+<!-- =========================
+     زر اختبار
+========================= -->
+
+<button
+    id="testButton"
+    type="button"
+    onclick="runTest()">
+
+    اختبار
+
+</button>
+
+
+<script>
+
+/* =====================================================
+   النظام الرئيسي
+===================================================== */
+
+var scenes =
+    document.querySelectorAll(".scene");
+
+var dots =
+    document.querySelectorAll(".dot");
+
+var currentScene = 0;
+
+
+/* =====================================================
+   الانتقال بين المشاهد
+===================================================== */
+
+function goToScene(number){
+
+    if(
+        number < 0 ||
+        number >= scenes.length
+    ){
+        return;
+    }
+
+    for(
+        var i = 0;
+        i < scenes.length;
+        i++
+    ){
+
+        scenes[i].classList.remove("active");
+
+    }
+
+    scenes[number].classList.add("active");
+
+
+    for(
+        var j = 0;
+        j < dots.length;
+        j++
+    ){
+
+        dots[j].classList.remove("active");
+
+    }
+
+    if(dots[number]){
+        dots[number].classList.add("active");
+    }
+
+
+    currentScene = number;
+
+
+    if(number === 2){
+        createWords();
+    }
+
+
+    if(number === 4){
+        startTyping();
+    }
+}
+
+
+/* =====================================================
+   الانتقال التالي
+===================================================== */
+
+function nextScene(){
+
+    if(
+        currentScene <
+        scenes.length - 1
+    ){
+
+        goToScene(
+            currentScene + 1
         );
 
-
-        noButton.addEventListener(
-            "click",
-            function() {
-
-                showScene(2);
-
-            }
-        );
+    }
+}
 
 
-        /* ==========================================
-           أزرار الانتقال
-        ========================================== */
+/* =====================================================
+   زر "ما عارفة"
+===================================================== */
 
-        document
-            .querySelectorAll(".next-button")
-            .forEach(
-                function(button) {
-                    button.addEventListener(
-                        "click",
-                        function() {
-
-                            nextScene();
-
-                        }
-                    );
-
-                }
-            );
+var noCount = 0;
 
 
-        /* ==========================================
-           كلمات الحب
-        ========================================== */
+function moveNoButton(){
 
-        const wordCloud =
-            document.getElementById(
-                "wordCloud"
-            );
+    var button =
+        document.getElementById("noButton");
+
+    var message =
+        document.getElementById("noMessage");
 
 
-        const loveWords = [
+    noCount++;
 
-            "Her şeyim",
 
-            "I love you",
+    if(noCount <= 5){
 
-            "Forever",
+        var x =
+            Math.random() * 160 - 80;
 
-            "Always",
+        var y =
+            Math.random() * 100 - 50;
 
-            "My love",
 
-            "My person",
+        button.style.transform =
+            "translate(" +
+            x +
+            "px," +
+            y +
+            "px";
 
-            "Canım",
 
-            "Love",
+        var messages = [
 
-            "For you",
+            "لااا 😂",
 
-            "Always you",
+            "جربي تاني ❤️",
 
-            "Sweetheart",
+            "ما بتمشي كدا 😭",
 
-            "Forever us",
+            "إنتِ عارفة طبعاً...",
 
-            "أحبك",
-
-            "أعز الناس",
-
-            "دائماً",
-
-            "معاك",
-
-            "إنتِ",
-
-            "♡",
-
-            "❤"
+            "خلاص ما عندك مهرب 😂❤️"
 
         ];
 
 
-        let wordsCreated = false;
+        message.textContent =
+            messages[
+                noCount - 1
+            ];
+
+    }
+
+    else{
+
+        button.style.transform =
+            "translate(0,0)";
+
+        button.textContent =
+            "خلاص عارفة ❤️";
+
+        message.textContent =
+            "أهو عرفتي 😌❤️";
+    }
+}
 
 
-        function createWords() {
+/* =====================================================
+   كلمات الحب
+===================================================== */
 
-            if (
-                wordsCreated ||
-                !wordCloud
-            ) {
-                return;
-            }
-
-
-            wordsCreated = true;
+var wordCloud =
+    document.getElementById(
+        "wordCloud"
+    );
 
 
-            for (
-                let i = 0;
-                i < 55;
-                i++
-            ) {
+var loveWords = [
 
-                const word =
-                    document.createElement(
-                        "span"
-                    );
+    "Her şeyim",
 
+    "I love you",
 
-                word.className =
-                    "word";
+    "Forever",
 
+    "Always",
 
-                word.textContent =
-                    loveWords[
-                        Math.floor(
-                            Math.random() *
-                            loveWords.length
-                        )
-                    ];
+    "My love",
 
+    "My person",
 
-                word.style.left =
-                    Math.random() * 92 +
-                    "%";
+    "Canım",
 
+    "Love",
 
-                word.style.top =
-                    Math.random() * 90 +
-                    "%";
+    "For you",
 
+    "Always you",
 
-                word.style.fontSize =
-                    10 +
-                    Math.random() * 15 +
-                    "px";
+    "Sweetheart",
 
+    "Forever us",
 
-                word.style.animationDelay =
-                    Math.random() * 4 +
-                    "s";
+    "أحبك",
+
+    "أعز الناس",
+
+    "دائماً",
+
+    "معاك",
+
+    "إنتِ",
+
+    "♡",
+
+    "❤"
+
+];
 
 
-                wordCloud.appendChild(
-                    word
-                );
-
-            }
-
-        }
+var wordsCreated = false;
 
 
-        /* ==========================================
-           الرسالة
-        ========================================== */
+function createWords(){
 
-        const typedMessage =
-            document.getElementById(
-                "typedMessage"
+    if(
+        wordsCreated ||
+        !wordCloud
+    ){
+        return;
+    }
+
+
+    wordsCreated = true;
+
+
+    for(
+        var i = 0;
+        i < 55;
+        i++
+    ){
+
+        var word =
+            document.createElement(
+                "span"
             );
 
 
-        const loveLetter =
-ما عارفة كيف أشرح ليك مكانتك عندي،
+        word.className =
+            "word";
+
+
+        word.textContent =
+            loveWords[
+                Math.floor(
+                    Math.random() *
+                    loveWords.length
+                )
+            ];
+
+
+        word.style.left =
+            Math.random() * 92 +
+            "%";
+
+
+        word.style.top =
+            Math.random() * 90 +
+            "%";
+
+
+        word.style.fontSize =
+            10 +
+            Math.random() * 15 +
+            "px";
+
+
+        word.style.animationDelay =
+            Math.random() * 4 +
+            "s";
+
+
+        wordCloud.appendChild(
+            word
+        );
+    }
+}
+
+
+/* =====================================================
+   الرسالة
+===================================================== */
+
+var typedMessage =
+    document.getElementById(
+        "typedMessage"
+    );
+
+
+var loveLetter =
+`ما عارفة كيف أشرح ليك مكانتك عندي،
 لكن عارفة إن وجودك في حياتي
 من الحاجات البتخلي الأيام أحلى.
 
@@ -1377,298 +1382,368 @@
 
 بس في حاجة واحدة متأكدة منها...
 
-إنتِ من أجمل الحاجات الحصلت لي. ❤️;
+إنتِ من أجمل الحاجات الحصلت لي. ❤️`;
 
 
-        let typingStarted = false;
+var typingStarted = false;
 
 
-        function startTyping() {
+function startTyping(){
 
-            if (
-                typingStarted ||
-                !typedMessage
-            ) {
-                return;
-            }
-
-
-            typingStarted = true;
+    if(
+        typingStarted ||
+        !typedMessage
+    ){
+        return;
+    }
 
 
-            let index = 0;
+    typingStarted = true;
 
 
-            function typeCharacter() {
-
-                if (
-                    index <
-                    loveLetter.length
-                ) {
-
-                    typedMessage.textContent +=
-                        loveLetter[index];
-
-                    index++;
+    var index = 0;
 
 
-                    setTimeout(
-                        typeCharacter,
-                        35
-                    );
+    function typeCharacter(){
 
-                }
+        if(
+            index <
+            loveLetter.length
+        ){
 
-            }
+            typedMessage.textContent +=
+                loveLetter[index];
+
+            index++;
 
 
-            typeCharacter();
-
+            setTimeout(
+                typeCharacter,
+                35
+            );
         }
+    }
 
 
-        /* ==========================================
-           القلب الأخير
-        ========================================== */
-
-        const bigHeart =
-            document.getElementById(
-                "bigHeart"
-            );
+    typeCharacter();
+}
 
 
-        const finalMessage =
-            document.getElementById(
-                "finalMessage"
-            );
+/* =====================================================
+   النهاية
+===================================================== */
 
+function finishLove(){
 
-        bigHeart.addEventListener(
-            "click",
-            function() {
-
-                bigHeart.style.display =
-                    "none";
-                    document
-                    .querySelector(".click-text")
-                    .style.display =
-                    "none";
-
-
-                finalMessage.style.display =
-                    "block";
-
-
-                explodeHearts();
-
-            }
+    var bigHeart =
+        document.getElementById(
+            "bigHeart"
         );
 
 
-        /* ==========================================
-           انفجار القلوب
-        ========================================== */
+    var clickText =
+        document.getElementById(
+            "clickText"
+        );
 
-        function explodeHearts() {
 
-            const symbols = [
-                "❤",
-                "♡",
-                "♥",
-                "✦"
+    var finalMessage =
+        document.getElementById(
+            "finalMessage"
+        );
+
+
+    bigHeart.style.display =
+        "none";
+
+
+    clickText.style.display =
+        "none";
+
+
+    finalMessage.style.display =
+        "block";
+
+
+    explodeHearts();
+}
+
+
+/* =====================================================
+   انفجار القلوب
+===================================================== */
+
+function explodeHearts(){
+
+    var symbols = [
+        "❤",
+        "♡",
+        "♥",
+        "✦"
+    ];
+
+
+    for(
+        var i = 0;
+        i < 50;
+        i++
+    ){
+
+        var heart =
+            document.createElement(
+                "div"
+            );
+
+
+        heart.textContent =
+            symbols[
+                Math.floor(
+                    Math.random() *
+                    symbols.length
+                )
             ];
 
 
-            for (
-                let i = 0;
-                i < 50;
-                i++
-            ) {
+        heart.style.position =
+            "fixed";
 
-                const heart =
-                    document.createElement(
-                        "div"
-                    );
 
+        heart.style.left =
+            "50%";
 
-                heart.textContent =
-                    symbols[
-                        Math.floor(
-                            Math.random() *
-                            symbols.length
-                        )
-                    ];
 
+        heart.style.top =
+            "50%";
 
-                heart.style.position =
-                    "fixed";
 
+        heart.style.zIndex =
+            "9999";
 
-                heart.style.left =
-                    "50%";
 
+        heart.style.pointerEvents =
+            "none";
 
-                heart.style.top =
-                    "50%";
 
+        heart.style.color =
+            "#ff477d";
 
-                heart.style.zIndex =
-                    "9999";
 
+        heart.style.fontSize =
+            15 +
+            Math.random() * 25 +
+            "px";
 
-                heart.style.pointerEvents =
-                    "none";
 
+        document.body.appendChild(
+            heart
+        );
 
-                heart.style.color =
-                    "#ff477d";
 
+        var x =
+            (Math.random() * 2 - 1) *
+            45;
 
-                heart.style.fontSize =
-                    15 +
-                    Math.random() * 25 +
-                    "px";
 
+        var y =
+            (Math.random() * 2 - 1) *
+            45;
 
-                document.body.appendChild(
-                    heart
-                );
 
+        var animation =
+            heart.animate(
 
-                const x =
-                    (Math.random() * 2 - 1) *
-                    45;
+                [
 
+                    {
+                        transform:
+                            "translate(-50%,-50%) scale(.2)",
 
-                const y =
-                    (Math.random() * 2 - 1) *
-                    45;
+                        opacity:1
+                    },
 
+                    {
 
-                const animation =
-                    heart.animate(
+                        transform:
+                            "translate(" +
+                            "calc(-50% + " +
+                            x +
+                            "vw)," +
+                            "calc(-50% + " +
+                            y +
+                            "vh)) scale(1.5)",
 
-                        [
+                        opacity:0
+                    }
 
-                            {
-                                transform:
-                                    "translate(-50%,-50%) scale(.2)",
+                ],
 
-                                opacity: 1
-                            },
+                {
 
-                            {
+                    duration:
+                        900 +
+                        Math.random() *
+                        900,
 
-                                transform:
-                                    "translate(" +
-                                    "calc(-50% + " +
-                                    x +
-                                    "vw)," +
-                                    "calc(-50% + " +
-                                    y +
-                                    "vh)" +
-                                    ") scale(1.5)",
+                    easing:
+                        "ease-out"
 
-                                opacity: 0
-                            }
+                }
+            );
 
-                        ],
 
-                        {
+        animation.onfinish =
+            function(){
 
-                            duration:
-                                900 +
-                                Math.random() *
-                                900,
+                heart.remove();
 
-                            easing:
-                                "ease-out"
+            };
+    }
+}
 
-                        }
 
-                    );
+/* =====================================================
+   قلوب الخلفية
+===================================================== */
 
+function createBackgroundHearts(){
 
-                animation.onfinish =
-                    function() {
+    for(
+        var i = 0;
+        i < 25;
+        i++
+    ){
 
-                        heart.remove();
+        var heart =
+            document.createElement(
+                "div"
+            );
 
-                    };
 
-            }
+        heart.className =
+            "bg-heart";
 
-        }
 
+        heart.textContent =
+            Math.random() > .5
+            ? "♡"
+            : "♥";
 
-        /* ==========================================
-           قلوب الخلفية
-        ========================================== */
 
-        function createBackgroundHearts() {
+        heart.style.left =
+            Math.random() * 100 +
+            "%";
 
-            for (
-                let i = 0;
-                i < 25;
-                i++
-            ) {
 
-                const heart =
-                    document.createElement(
-                        "div"
-                    );
+        heart.style.fontSize =
+            12 +
+            Math.random() * 25 +
+            "px";
 
 
-                heart.className =
-                    "bg-heart";
+        heart.style.animationDuration =
+            8 +
+            Math.random() * 12 +
+            "s";
 
 
-                heart.textContent =
-                    Math.random() > .5
-                    ? "♡"
-                    : "♥";
+        heart.style.animationDelay =
+            -(Math.random() * 15) +
+            "s";
 
 
-                heart.style.left =
-                    Math.random() * 100 +
-                    "%";
+        document.body.appendChild(
+            heart
+        );
+    }
+}
 
 
-                heart.style.fontSize =
-                    12 +
-                    Math.random() * 25 +
-                    "px";
-                    heart.style.animationDuration =
-                    8 +
-                    Math.random() * 12 +
-                    "s";
+/* =====================================================
+   اختبار النظام
+===================================================== */
 
+function runTest(){
 
-                heart.style.animationDelay =
-                    -(Math.random() * 15) +
-                    "s";
+    var message =
+        document.createElement(
+            "div"
+        );
 
 
-                document.body.appendChild(
-                    heart
-                );
+    message.textContent =
+        "✓ الأزرار و JavaScript يعملان";
 
-            }
 
-        }
+    message.style.position =
+        "fixed";
 
 
-        createBackgroundHearts();
+    message.style.top =
+        "50%";
 
 
-        /* ==========================================
-           البداية
-        ========================================== */
+    message.style.left =
+        "50%";
 
-        showScene(0);
 
-    </script>
+    message.style.transform =
+        "translate(-50%,-50%)";
+
+
+    message.style.zIndex =
+        "999999";
+
+
+    message.style.padding =
+        "20px 30px";
+
+
+    message.style.borderRadius =
+        "20px";
+
+
+    message.style.background =
+        "#ff477d";
+
+
+    message.style.color =
+        "white";
+
+
+    message.style.fontSize =
+        "18px";
+
+
+    message.style.boxShadow =
+        "0 10px 40px rgba(0,0,0,.5)";
+
+
+    document.body.appendChild(
+        message
+    );
+
+
+    setTimeout(
+        function(){
+
+            message.remove();
+
+        },
+        1800
+    );
+}
+
+
+/* =====================================================
+   التشغيل الأول
+===================================================== */
+
+createBackgroundHearts();
+
+goToScene(0);
+
+</script>
 
 </body>
-
 </html>
+```
